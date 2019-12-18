@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">DigitalSignpostMobile</string>
+    <string name="scan_sign">Scan Sign</string>
+    <string name="digital_signpost_mobile">Digital Signpost Mobile</string>
+    <string name="camera">camera</string>
+    <string name="capture">Give me the Text</string>
 </resources>
