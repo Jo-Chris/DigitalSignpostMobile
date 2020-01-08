@@ -5,5 +5,5 @@
     <string name="camera">camera</string>
     <string name="capture">Give me the Text</string>
     <string name="show_the_captured_image">show the captured image</string>
-    <string name="get_results">Get Results</string>
+    <string name="save">Speichern</string>
 </resources>

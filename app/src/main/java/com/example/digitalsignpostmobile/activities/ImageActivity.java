@@ -35,7 +35,4 @@ public class ImageActivity extends AppCompatActivity {
     private void showImageCaptured(Uri receivedImageUri) {
         imageView.setImageURI(receivedImageUri);
     }
-
-
-
 }
