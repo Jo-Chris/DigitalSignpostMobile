@@ -6,4 +6,18 @@
     <string name="capture">Give me the Text</string>
     <string name="show_the_captured_image">show the captured image</string>
     <string name="save">Speichern</string>
+    <string name="direction">Richtung</string>
+
+    <!-- detailed signrow view -->
+
+    <string name="rowNumber">Zeilenanzahl</string>
+    <string name="beispieltext">Beispieltext</string>
+    <string name="resOrg">Organisationszeile</string>
+    <string name="target">Target</string>
+    <string name="duration">Duration</string>
+    <string name="loeschen">Löschen</string>
+    <string name="n_v">N/V</string>
+    <string name="zeile_x">Zeile X</string>
+
+
 </resources>
