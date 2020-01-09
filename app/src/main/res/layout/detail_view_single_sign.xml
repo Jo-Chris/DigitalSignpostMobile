@@ -1,98 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:foregroundGravity="right">
 
-    <ImageView
-        android:id="@+id/signImage"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:src="@mipmap/ic_launcher_round"/>
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/signnameText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:layout_marginStart="15dp"
-        android:text="@string/beispieltext"
-        android:layout_toEndOf="@id/signImage"/>
+        <ImageView
+            android:id="@+id/signImage"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="15dp"
+            android:src="@mipmap/ic_launcher_round"
+            android:layout_weight="0.3"
+            android:contentDescription="@string/show_the_captured_image" />
 
-    <!-- Direction -->
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="15dp"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/directionText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/direction"
-        android:layout_marginStart="15dp"
-        android:layout_below="@id/signnameText"
-        android:layout_toEndOf="@id/signImage"/>
+            <TextView
+                android:id="@+id/signnameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/beispieltext"
+                />
 
-    <TextView
-        android:id="@+id/directionValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/n_v"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignBaseline="@id/directionText"/>
+            <!-- Direction -->
 
-    <!-- RowNumber -->
+            <TextView
+                android:id="@+id/directionText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/direction"
+                android:layout_marginStart="15dp"
+                android:layout_below="@id/signnameText"/>
 
-    <TextView
-        android:id="@+id/rowNumberText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/rowNumber"
-        android:layout_marginStart="15dp"
-        android:layout_below="@id/directionText"
-        android:layout_toEndOf="@id/signImage"/>
+            <TextView
+                android:id="@+id/directionValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/n_v"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBaseline="@id/directionText"/>
+
+            <!-- RowNumber -->
+
+            <TextView
+                android:id="@+id/rowNumberText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rowNumber"
+                android:layout_marginStart="15dp"
+                android:layout_below="@id/directionValue"/>
 
 
-    <TextView
-        android:id="@+id/rowCountValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:text="@string/n_v"
-        android:layout_alignParentEnd="true"
-        android:layout_alignBaseline="@id/rowNumberText"/>
+            <TextView
+                android:id="@+id/rowCountValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:text="@string/n_v"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBaseline="@id/rowNumberText"/>
 
-    <!-- ResOrg -->
+            <!-- ResOrg -->
 
-    <TextView
-        android:id="@+id/resOrgText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/resOrg"
-        android:layout_marginStart="15dp"
-        android:layout_below="@id/rowNumberText"
-        android:layout_toEndOf="@id/signImage"/>
-    <TextView
-        android:id="@+id/resOrgValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/n_v"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignBaseline="@id/resOrgText"/>
+            <TextView
+                android:id="@+id/resOrgText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/resOrg"
+                android:layout_marginStart="15dp"
+                android:layout_below="@id/rowCountValue"/>
+
+            <TextView
+                android:id="@+id/resOrgValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/n_v"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/rowCountValue"/>
+
+        </RelativeLayout>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/rowNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/zeile_x"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
-        android:layout_below="@id/signImage"/>
+        android:text="@string/zeile_x"
+        />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/targetET"
@@ -125,8 +141,4 @@
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="15dp"
         android:layout_below="@id/durationET"/>
-
-
-
-
-</RelativeLayout>
+</LinearLayout>
