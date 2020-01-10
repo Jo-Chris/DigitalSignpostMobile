@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.digitalsignpostmobile.R;
@@ -22,16 +23,15 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
         mDataset = listData;
     }
 
-    public static class MainViewHolder extends RecyclerView.ViewHolder {
-        public LinearLayout linearLayout;
-        public TextView imageTitle;
-        public TextView imageCoords;
-        public TextView numberOfSigns;
-        public Button button;
+    static class MainViewHolder extends RecyclerView.ViewHolder {
+        private TextView imageTitle;
+        private TextView imageCoords;
+        private TextView numberOfSigns;
+        private Button button;
 
-        public MainViewHolder(View itemView) {
+        MainViewHolder(@NonNull LinearLayout itemView) {
             super(itemView);
-            linearLayout = itemView.findViewById(R.id.linearLayout);
+
             imageTitle = itemView.findViewById(R.id.imageTitle);
             imageCoords = itemView.findViewById(R.id.imageCoords);
             numberOfSigns = itemView.findViewById(R.id.numberOfSigns);
@@ -42,9 +42,9 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
     @Override
     public MainAdapter.MainViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View v = layoutInflater.inflate(R.layout.recyclerview_main_item, parent, false);
-        MainViewHolder vh = new MainViewHolder(v);
-        return vh;
+        LinearLayout v = (LinearLayout) layoutInflater.inflate(R.layout.recyclerview_main_item, parent, false);
+
+        return new MainViewHolder(v);
     }
 
     @Override

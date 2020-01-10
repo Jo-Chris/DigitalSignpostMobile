@@ -10,6 +10,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
 
+import com.example.digitalsignpostmobile.activities.ImageActivity;
+
 
 public class Camera {
 
@@ -25,7 +27,7 @@ public class Camera {
         return false;
     }
 
-    public static void openCamera(Activity c, int captureCode){
+    public static Uri openCamera(Activity c, int captureCode){
         ContentValues values = new ContentValues();
         values.put(MediaStore.Images.Media.TITLE, "Neues Wanderschild");
         Uri image_uri = c.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
@@ -34,5 +36,7 @@ public class Camera {
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, image_uri);
         c.startActivityForResult(cameraIntent, captureCode);
+
+        return image_uri;
     }
 }

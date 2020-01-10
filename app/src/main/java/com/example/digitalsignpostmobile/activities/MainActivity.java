@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()){
             case R.id.openCamera: {
                 if (Camera.checkCamera(this, PERMISSION_CODE)) {
-                    Camera.openCamera(this, IMAGE_CAPTURE_CODE);
+                    this.image_uri = Camera.openCamera(this, IMAGE_CAPTURE_CODE);
                 }
             }
         }
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (requestCode) {
             case PERMISSION_CODE: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Camera.openCamera(this, IMAGE_CAPTURE_CODE);
+                    this.image_uri = Camera.openCamera(this, IMAGE_CAPTURE_CODE);
                 } else {
                     Toast.makeText(this, "Permission denied!", Toast.LENGTH_SHORT).show();
                 }

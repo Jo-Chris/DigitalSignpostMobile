@@ -8,9 +8,7 @@
     <string name="save">Speichern</string>
     <string name="direction">Richtung</string>
     <string name="more">Mehr</string>
-
     <!-- detailed signrow view -->
-
     <string name="rowNumber">Zeilenanzahl</string>
     <string name="beispieltext">Beispieltext</string>
     <string name="beispielnumber">0</string>

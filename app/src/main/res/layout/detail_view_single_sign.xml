@@ -40,7 +40,7 @@
             <!-- Direction -->
 
             <TextView
-                android:id="@+id/imageCoords"
+                android:id="@+id/imageCoordinates"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/direction"
@@ -55,7 +55,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:layout_alignParentEnd="true"
-                android:layout_alignBaseline="@id/imageCoords"/>
+                android:layout_alignBaseline="@id/imageCoordinates"/>
 
             <!-- RowNumber -->
 
@@ -114,7 +114,6 @@
         android:id="@+id/targetET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rowNumber"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:hint="@string/target"
@@ -126,7 +125,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
-        android:layout_below="@+id/targetET"
         android:hint="@string/duration"
         />
 
@@ -139,6 +137,5 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginBottom="15dp"
-        android:layout_below="@id/durationET"/>
+        android:layout_marginBottom="15dp"/>
 </LinearLayout>
