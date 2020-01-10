@@ -25,6 +25,7 @@ import com.example.digitalsignpostmobile.classes.MainAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private final int PERMISSION_CODE = 100;
@@ -46,17 +47,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Image image1 = new Image("Wilder Kaiser", 6, 47.503410, 12.571640);
-        Image image2 = new Image("Steinberge", 4, 47.503410, 12.571640);
-        Image image3 = new Image("Großglockner", 3, 47.503410, 12.571640);
-        Image image4 = new Image("Watzmann", 2, 47.503410, 12.571640);
-        Image image5 = new Image("Buchenstein", 5, 47.503410, 12.571640);
+        Random r = new Random();
 
-        mDataset.add(image1);
-        mDataset.add(image2);
-        mDataset.add(image3);
-        mDataset.add(image4);
-        mDataset.add(image5);
+        for (int i = 0; i < 20; i++) {
+            Image image = new Image("Bild " + (i + 1), r.nextInt(10), 47.503410, 12.571640);
+            mDataset.add(image);
+        }
 
         initUI();
         addListeners();

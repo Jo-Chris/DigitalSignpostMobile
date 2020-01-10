@@ -8,6 +8,8 @@
     <string name="save">Speichern</string>
     <string name="direction">Richtung</string>
     <string name="more">Mehr</string>
+    <string name="label_signs">Wanderschilder</string>
+    <string name="label_sign">Wanderschild</string>
     <!-- detailed signrow view -->
     <string name="rowNumber">Zeilenanzahl</string>
     <string name="beispieltext">Beispieltext</string>

@@ -3,7 +3,6 @@ package com.example.digitalsignpostmobile.classes;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,18 +23,20 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
     }
 
     static class MainViewHolder extends RecyclerView.ViewHolder {
+        private LinearLayout linearLayout;
         private TextView imageTitle;
         private TextView imageCoords;
         private TextView numberOfSigns;
-        private Button button;
+        private TextView numberOfSignsLabel;
 
         MainViewHolder(@NonNull LinearLayout itemView) {
             super(itemView);
 
+            linearLayout = itemView.findViewById(R.id.linearLayout);
             imageTitle = itemView.findViewById(R.id.imageTitle);
             imageCoords = itemView.findViewById(R.id.imageCoords);
             numberOfSigns = itemView.findViewById(R.id.numberOfSigns);
-            button = itemView.findViewById(R.id.button);
+            numberOfSignsLabel = itemView.findViewById(R.id.numberOfSignsLabel);
         }
     }
 
@@ -50,10 +51,17 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
     @Override
     public void onBindViewHolder(MainViewHolder holder, int position) {
         final Image mListData = mDataset.get(position);
-        holder.imageTitle.setText(mDataset.get(position).getTitle());
-        holder.imageCoords.setText(mDataset.get(position).getCoords());
-        holder.numberOfSigns.setText(String.valueOf(mDataset.get(position).getNumberOfSigns()));
-        holder.button.setOnClickListener(new View.OnClickListener() {
+        holder.imageTitle.setText(mListData.getTitle());
+        holder.imageCoords.setText(mListData.getCoords());
+        holder.numberOfSigns.setText(String.valueOf(mListData.getNumberOfSigns()));
+
+        if (mListData.getNumberOfSigns() == 1) {
+            holder.numberOfSignsLabel.setText(R.string.label_sign);
+        } else {
+            holder.numberOfSignsLabel.setText(R.string.label_signs);
+        }
+
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(view.getContext(),"Click on item: " + mListData.getTitle(), Toast.LENGTH_LONG).show();
