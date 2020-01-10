@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.digitalsignpostmobile.R;
+import com.example.digitalsignpostmobile.classes.Camera;
 import com.example.digitalsignpostmobile.model.Image;
 import com.example.digitalsignpostmobile.classes.MainAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -63,32 +64,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initUI(){
-
-        // ActionBar
-
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Übersicht");
-
-        // RecyclerView
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setTitle("Übersicht");
+        }
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
 
-        // LinearLayoutManager
-
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
-        // Adapter
 
         mAdapter = new MainAdapter(mDataset);
         recyclerView.setAdapter(mAdapter);
 
-        // FAB Button
-
         openCamera = findViewById(R.id.openCamera);
-
     }
+
 
     private void addListeners(){
         openCamera.setOnClickListener(this);
@@ -98,33 +89,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.openCamera: {
-                if (checkCamera()) openCamera();
+                if (Camera.checkCamera(this, PERMISSION_CODE)) {
+                    Camera.openCamera(this, IMAGE_CAPTURE_CODE);
+                }
             }
         }
     }
 
-    public boolean checkCamera() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-                String[] permission = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
-                requestPermissions(permission, PERMISSION_CODE);
-            } else return true;
-
-        } else return true;
-
-        return false;
-    }
-
-    private void openCamera(){
-        ContentValues values = new ContentValues();
-        values.put(MediaStore.Images.Media.TITLE, "Neues Wanderschild");
-        image_uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-
-        // Camera intent
-        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, image_uri);
-        startActivityForResult(cameraIntent, IMAGE_CAPTURE_CODE);
-    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -132,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (requestCode) {
             case PERMISSION_CODE: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    openCamera();
+                    Camera.openCamera(this, IMAGE_CAPTURE_CODE);
                 } else {
                     Toast.makeText(this, "Permission denied!", Toast.LENGTH_SHORT).show();
                 }
