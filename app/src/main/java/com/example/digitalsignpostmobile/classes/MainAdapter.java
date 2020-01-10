@@ -3,6 +3,7 @@ package com.example.digitalsignpostmobile.classes;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,12 +24,18 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
 
     public static class MainViewHolder extends RecyclerView.ViewHolder {
         public LinearLayout linearLayout;
-        public TextView textView;
+        public TextView imageTitle;
+        public TextView imageCoords;
+        public TextView numberOfSigns;
+        public Button button;
 
         public MainViewHolder(View itemView) {
             super(itemView);
             linearLayout = itemView.findViewById(R.id.linearLayout);
-            textView = itemView.findViewById(R.id.imageTitle);
+            imageTitle = itemView.findViewById(R.id.imageTitle);
+            imageCoords = itemView.findViewById(R.id.imageCoords);
+            numberOfSigns = itemView.findViewById(R.id.numberOfSigns);
+            button = itemView.findViewById(R.id.button);
         }
     }
 
@@ -43,11 +50,13 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
     @Override
     public void onBindViewHolder(MainViewHolder holder, int position) {
         final Image mListData = mDataset.get(position);
-        holder.textView.setText(mDataset.get(position).getTitle());
-        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+        holder.imageTitle.setText(mDataset.get(position).getTitle());
+        holder.imageCoords.setText(mDataset.get(position).getCoords());
+        holder.numberOfSigns.setText(String.valueOf(mDataset.get(position).getNumberOfSigns()));
+        holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(),"click on item: " + mListData.getTitle(), Toast.LENGTH_LONG).show();
+                Toast.makeText(view.getContext(),"Click on item: " + mListData.getTitle(), Toast.LENGTH_LONG).show();
             }
         });
     }

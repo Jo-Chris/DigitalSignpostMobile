@@ -46,4 +46,8 @@ public class Image {
         this.longitude = longitude;
     }
 
+    public String getCoords() {
+        return "Lat: " + this.latitude + " / Lng: " + this.longitude;
+    }
+
 }

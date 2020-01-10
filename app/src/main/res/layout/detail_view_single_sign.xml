@@ -40,7 +40,7 @@
             <!-- Direction -->
 
             <TextView
-                android:id="@+id/directionText"
+                android:id="@+id/imageCoords"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/direction"
@@ -55,7 +55,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:layout_alignParentEnd="true"
-                android:layout_alignBaseline="@id/directionText"/>
+                android:layout_alignBaseline="@id/imageCoords"/>
 
             <!-- RowNumber -->
 
