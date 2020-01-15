@@ -1,12 +1,9 @@
 package com.example.digitalsignpostmobile.model;
-
 import android.graphics.Bitmap;
 import android.util.Log;
-
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +23,7 @@ public class Sign implements Serializable {
     private boolean hasResOrg;
     @ColumnInfo(name = "rowCount")
     private Bitmap image;
-
-    private List<SignData> signDataList;
+    @ColumnInfo(name = "signData")
     private static final String TAG = "Sign";
 
     public Sign(String title, String direction, int rowCount, boolean hasResOrg, Bitmap image) {
@@ -36,15 +32,6 @@ public class Sign implements Serializable {
         this.rowCount = rowCount;
         this.hasResOrg = hasResOrg;
         this.image = image;
-        this.signDataList = new ArrayList<>();
-    }
-
-    public void addSignData(SignData data){
-        if (signDataList.size() != rowCount){
-            this.signDataList.add(data);
-        }else{
-            Log.i(TAG, "SignDataList is already full, no more rows to add");
-        }
     }
 
     public Sign(){
@@ -93,13 +80,5 @@ public class Sign implements Serializable {
 
     public void setImage(Bitmap image) {
         this.image = image;
-    }
-
-    public List<SignData> getSignDataList() {
-        return signDataList;
-    }
-
-    public void setSignDataList(List<SignData> signDataList) {
-        this.signDataList = signDataList;
     }
 }
