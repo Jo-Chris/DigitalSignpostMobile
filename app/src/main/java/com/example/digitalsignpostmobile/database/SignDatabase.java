@@ -9,9 +9,9 @@ import androidx.room.RoomDatabase;
 import com.example.digitalsignpostmobile.database.DAO.SignDAO;
 import com.example.digitalsignpostmobile.database.DAO.SignDataDAO;
 import com.example.digitalsignpostmobile.database.DAO.SignImageDAO;
-import com.example.digitalsignpostmobile.model.Sign;
-import com.example.digitalsignpostmobile.model.SignData;
-import com.example.digitalsignpostmobile.model.SignImage;
+import com.example.digitalsignpostmobile.models.Sign;
+import com.example.digitalsignpostmobile.models.SignData;
+import com.example.digitalsignpostmobile.models.SignImage;
 
 @Database(entities = {
         Sign.class,

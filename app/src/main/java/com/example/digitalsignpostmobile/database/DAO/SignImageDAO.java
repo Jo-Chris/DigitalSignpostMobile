@@ -1,7 +1,7 @@
 package com.example.digitalsignpostmobile.database.DAO;
 
-import com.example.digitalsignpostmobile.model.Sign;
-import com.example.digitalsignpostmobile.model.SignImage;
+import com.example.digitalsignpostmobile.models.Sign;
+import com.example.digitalsignpostmobile.models.SignImage;
 
 import java.util.List;
 
@@ -29,4 +29,5 @@ public interface SignImageDAO {
 
     @Query("SELECT * FROM signimage")
     List<SignImage> getAll();
+
 }

@@ -7,11 +7,10 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.digitalsignpostmobile.model.Sign;
+import com.example.digitalsignpostmobile.models.Sign;
+import com.example.digitalsignpostmobile.models.SignImage;
 
 import java.util.List;
-
-import static android.icu.text.MessagePattern.ArgType.SELECT;
 
 @Dao
 public interface SignDAO {
@@ -30,5 +29,11 @@ public interface SignDAO {
 
     @Query("SELECT * FROM sign")
     List<Sign> getAll();
+
+    /*
+     returns all Signs from one given SignImage
+     */
+    @Query("SELECT * FROM sign WHERE itemId = :id")
+    List<Sign> getId(int id);
 
 }

@@ -1,4 +1,4 @@
-package com.example.digitalsignpostmobile.model;
+package com.example.digitalsignpostmobile.models;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

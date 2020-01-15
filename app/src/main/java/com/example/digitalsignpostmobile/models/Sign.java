@@ -1,4 +1,4 @@
-package com.example.digitalsignpostmobile.model;
+package com.example.digitalsignpostmobile.models;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -27,8 +27,8 @@ public class Sign implements Serializable {
     private String direction;
     @ColumnInfo(name = "rowCount")
     private int rowCount;
-    @ColumnInfo(name = "hasResOrg")
-    private boolean hasResOrg;
+    @ColumnInfo(name = "resOrgAvailable")
+    private boolean resOrgAvailable;
     @ColumnInfo(name = "image")
     private String filepath; // convert to Bitmap, or ignore completely...
     @ColumnInfo(name = "itemId")
@@ -41,7 +41,7 @@ public class Sign implements Serializable {
         this.title = title;
         this.direction = direction;
         this.rowCount = rowCount;
-        this.hasResOrg = hasResOrg;
+        this.resOrgAvailable = hasResOrg;
         this.filepath = filepath;
         this.itemId = itemId;
     }
@@ -78,12 +78,12 @@ public class Sign implements Serializable {
         this.rowCount = rowCount;
     }
 
-    public boolean isHasResOrg() {
-        return hasResOrg;
+    public boolean isResOrgAvailable() {
+        return resOrgAvailable;
     }
 
-    public void setHasResOrg(boolean hasResOrg) {
-        this.hasResOrg = hasResOrg;
+    public void setResOrgAvailable(boolean resOrgAvailable) {
+        this.resOrgAvailable = resOrgAvailable;
     }
 
     public String getFilepath() {
@@ -122,7 +122,7 @@ public class Sign implements Serializable {
                 ", title='" + title + '\'' +
                 ", direction='" + direction + '\'' +
                 ", rowCount=" + rowCount +
-                ", hasResOrg=" + hasResOrg +
+                ", resOrgAvailable=" + resOrgAvailable +
                 ", filepath='" + filepath + '\'' +
                 '}';
     }

@@ -1,5 +1,7 @@
-package com.example.digitalsignpostmobile.classes;
+package com.example.digitalsignpostmobile.adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.digitalsignpostmobile.R;
-import com.example.digitalsignpostmobile.model.SignImage;
+import com.example.digitalsignpostmobile.activities.DetailActivity;
+import com.example.digitalsignpostmobile.models.SignImage;
 
 import java.util.ArrayList;
 
@@ -70,6 +73,9 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
             @Override
             public void onClick(View view) {
                 Toast.makeText(view.getContext(),"Click on item: " + mListData.getTitle(), Toast.LENGTH_LONG).show();
+
+                Context c = view.getContext();
+                c.startActivity(new Intent(c.getApplicationContext(), DetailActivity.class).putExtra("id", mListData.getId()));
             }
         });
     }

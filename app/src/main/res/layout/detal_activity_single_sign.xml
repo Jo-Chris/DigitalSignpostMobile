@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:foregroundGravity="right">
+    android:foregroundGravity="right"
+    android:id="@+id/linearLayoutRV">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,7 +31,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/signnameText"
+                android:id="@+id/signTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="25sp"
@@ -45,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/direction"
                 android:layout_marginStart="15dp"
-                android:layout_below="@id/signnameText"/>
+                android:layout_below="@id/signTitle"/>
 
             <TextView
                 android:id="@+id/directionValue"
@@ -69,7 +72,7 @@
 
 
             <TextView
-                android:id="@+id/rowCountValue"
+                android:id="@+id/rowNumberValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
@@ -86,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/resOrg"
                 android:layout_marginStart="15dp"
-                android:layout_below="@id/rowCountValue"/>
+                android:layout_below="@id/rowNumberValue"/>
 
             <TextView
                 android:id="@+id/resOrgValue"
@@ -96,37 +99,16 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:layout_alignParentEnd="true"
-                android:layout_below="@id/rowCountValue"/>
+                android:layout_below="@id/rowNumberValue"/>
 
         </RelativeLayout>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/rowNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:text="@string/zeile_x"
-        />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/targetET"
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:hint="@string/target"
-        />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/durationET"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:hint="@string/duration"
-        />
+        android:layout_height="200dp"
+        tools:listitem="@layout/detail_view_row_data"
+        android:id="@+id/rowRecyclerView"/>
 
     <Button
         android:layout_width="match_parent"
