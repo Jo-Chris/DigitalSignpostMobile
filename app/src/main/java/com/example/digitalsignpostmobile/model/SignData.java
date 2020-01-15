@@ -12,15 +12,15 @@ import java.io.Serializable;
 @Entity(foreignKeys = @ForeignKey(
         entity = Sign.class,
         parentColumns = "id",
-        childColumns = "signId",
+        childColumns = "signId",    // the one within the class!
         onDelete = ForeignKey.CASCADE),
         indices = {@Index("signId")})
 
 public class SignData implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "uid")
-    private int uid;
+    @ColumnInfo(name = "id")
+    private int id;
     @ColumnInfo(name = "target")
     private String target;
     @ColumnInfo(name = "duration")
@@ -78,12 +78,12 @@ public class SignData implements Serializable {
         this.signId = signId;
     }
 
-    public int getUid() {
-        return uid;
+    public int getId() {
+        return id;
     }
 
-    public void setUid(int uid) {
-        this.uid = uid;
+    public void setId(int uid) {
+        this.id = uid;
     }
 
     public String getDuration() {
@@ -101,4 +101,5 @@ public class SignData implements Serializable {
     public void setPathNumber(String pathNumber) {
         this.pathNumber = pathNumber;
     }
+
 }

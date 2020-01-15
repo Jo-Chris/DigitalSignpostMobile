@@ -2,12 +2,20 @@ package com.example.digitalsignpostmobile.model;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 import java.io.Serializable;
 
-@Entity(indices = {@Index("id")})
+
+@Entity(foreignKeys = @ForeignKey(
+        entity = SignImage.class,
+        parentColumns = "id",
+        childColumns = "itemId",
+        onDelete = ForeignKey.CASCADE),
+        indices = {@Index("itemId")})
+
 public class Sign implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
@@ -23,16 +31,19 @@ public class Sign implements Serializable {
     private boolean hasResOrg;
     @ColumnInfo(name = "image")
     private String filepath; // convert to Bitmap, or ignore completely...
+    @ColumnInfo(name = "itemId")
+    private int itemId;
 
     private static final String TAG = "Sign";
 
     @Ignore
-    public Sign(String title, String direction, int rowCount, boolean hasResOrg, String filepath) {
+    public Sign(String title, String direction, int rowCount, boolean hasResOrg, String filepath, int itemId) {
         this.title = title;
         this.direction = direction;
         this.rowCount = rowCount;
         this.hasResOrg = hasResOrg;
         this.filepath = filepath;
+        this.itemId = itemId;
     }
 
     public Sign(){
@@ -89,6 +100,18 @@ public class Sign implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
+    }
+
+    public static String getTAG() {
+        return TAG;
     }
 
     @Override

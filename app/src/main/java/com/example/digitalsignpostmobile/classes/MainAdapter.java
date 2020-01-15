@@ -1,5 +1,6 @@
 package com.example.digitalsignpostmobile.classes;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,14 +12,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.digitalsignpostmobile.R;
-import com.example.digitalsignpostmobile.model.Image;
+import com.example.digitalsignpostmobile.model.SignImage;
 
 import java.util.ArrayList;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder> {
-    private ArrayList<Image> mDataset;
-
-    public MainAdapter(ArrayList<Image> listData) {
+    private static final String TAG = "MainAdapter";
+    private ArrayList<SignImage> mDataset;
+    public MainAdapter(ArrayList<SignImage> listData) {
         mDataset = listData;
     }
 
@@ -50,7 +51,11 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
 
     @Override
     public void onBindViewHolder(MainViewHolder holder, int position) {
-        final Image mListData = mDataset.get(position);
+
+        Log.wtf(TAG, "There are " + mDataset.size() + "items in the list");
+
+        final SignImage mListData = mDataset.get(position);
+
         holder.imageTitle.setText(mListData.getTitle());
         holder.imageCoords.setText(mListData.getCoords());
         holder.numberOfSigns.setText(String.valueOf(mListData.getNumberOfSigns()));

@@ -1,4 +1,4 @@
-package com.example.digitalsignpostmobile.database;
+package com.example.digitalsignpostmobile.database.DAO;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
