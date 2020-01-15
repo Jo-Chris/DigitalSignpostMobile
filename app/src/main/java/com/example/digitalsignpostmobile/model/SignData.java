@@ -28,9 +28,7 @@ public class SignData implements Serializable {
     @ColumnInfo(name = "signId")
     private int signId;
 
-    public SignData(){
-
-    }
+    public SignData(){ }
 
     public SignData(String target, String duration, String pathNumber, String resOrg, int signId){
         this.target = target;

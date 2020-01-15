@@ -66,6 +66,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+
+    @Delete
+    private void createTestDummyData(){
+        // SignDAO signDAO = SignDatabase.getInstance(this).ge
+    }
+
+
     private void initDatabase(){
         SignDatabase db = Room.databaseBuilder(getApplicationContext(), SignDatabase.class, "signpost-db").build();
     }

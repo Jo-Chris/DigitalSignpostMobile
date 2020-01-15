@@ -1,12 +1,9 @@
 package com.example.digitalsignpostmobile.model;
 import android.graphics.Bitmap;
-import android.util.Log;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Sign implements Serializable {
