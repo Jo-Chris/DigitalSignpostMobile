@@ -15,6 +15,9 @@
         android:paddingBottom="8dp"
         tools:listitem="@layout/recyclerview_main_item" />
 
+
+    <!-- white color not appearing in API > 22 -->
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/openCamera"
         android:layout_width="wrap_content"

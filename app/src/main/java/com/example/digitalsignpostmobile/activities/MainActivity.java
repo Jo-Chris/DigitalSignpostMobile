@@ -6,6 +6,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Delete;
+import androidx.room.Room;
 
 import android.Manifest;
 import android.content.ContentValues;
@@ -20,8 +22,11 @@ import android.widget.Toast;
 
 import com.example.digitalsignpostmobile.R;
 import com.example.digitalsignpostmobile.classes.Camera;
+import com.example.digitalsignpostmobile.database.SignDAO;
+import com.example.digitalsignpostmobile.database.SignDatabase;
 import com.example.digitalsignpostmobile.model.Image;
 import com.example.digitalsignpostmobile.classes.MainAdapter;
+import com.example.digitalsignpostmobile.model.Sign;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -30,15 +35,12 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private final int PERMISSION_CODE = 100;
     private final int IMAGE_CAPTURE_CODE = 1001;
-
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
-
     private ArrayList<Image> mDataset = new ArrayList<>();
-
-    FloatingActionButton openCamera;
-    Uri image_uri;
+    private FloatingActionButton openCamera;
+    private Uri image_uri;
 
     private final String TAG = "MAIN";
 
@@ -47,20 +49,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        initDatabase();
+        createTestData();
+        initUI();
+        addListeners();
+
+    }
+
+    @Delete
+    private void createTestData(){
         Random r = new Random();
 
         for (int i = 0; i < 20; i++) {
             Image image = new Image("Bild " + (i + 1), r.nextInt(10), 47.503410, 12.571640);
             mDataset.add(image);
         }
+    }
 
-        initUI();
-        addListeners();
-
+    private void initDatabase(){
+        SignDatabase db = Room.databaseBuilder(getApplicationContext(), SignDatabase.class, "signpost-db").build();
     }
 
     private void initUI(){
-        if(getSupportActionBar() != null){
+        if (getSupportActionBar() != null){
             getSupportActionBar().setTitle("Übersicht");
         }
 
@@ -83,11 +94,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.openCamera: {
-                if (Camera.checkCamera(this, PERMISSION_CODE)) {
-                    this.image_uri = Camera.openCamera(this, IMAGE_CAPTURE_CODE);
-                }
+        if (v.getId() == R.id.openCamera){
+            if (Camera.checkCamera(this, PERMISSION_CODE)) {
+                this.image_uri = Camera.openCamera(this, IMAGE_CAPTURE_CODE);
             }
         }
     }
@@ -96,8 +105,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case PERMISSION_CODE: {
+
+        if (requestCode == PERMISSION_CODE) {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     this.image_uri = Camera.openCamera(this, IMAGE_CAPTURE_CODE);
                 } else {
@@ -105,7 +114,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         }
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -115,5 +123,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(new Intent(this, ImageActivity.class).putExtra("IMAGE_URI", image_uri.toString()));
         }
     }
-
 }
