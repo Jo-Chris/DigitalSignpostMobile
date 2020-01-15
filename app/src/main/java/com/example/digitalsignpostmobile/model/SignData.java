@@ -3,19 +3,23 @@ package com.example.digitalsignpostmobile.model;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
-
-@Entity(foreignKeys = @ForeignKey(entity = Sign.class,
+@Entity(foreignKeys = @ForeignKey(
+        entity = Sign.class,
         parentColumns = "id",
-        childColumns = "userId",
-        onDelete = ForeignKey.CASCADE))
+        childColumns = "signId",
+        onDelete = ForeignKey.CASCADE),
+        indices = {@Index("signId")})
 
 public class SignData implements Serializable {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "uid")
     private int uid;
     @ColumnInfo(name = "target")
     private String target;
@@ -30,13 +34,16 @@ public class SignData implements Serializable {
 
     public SignData(){ }
 
+    @Ignore
     public SignData(String target, String duration, String pathNumber, String resOrg, int signId){
         this.target = target;
         this.duration = duration;
         this.pathNumber = pathNumber;
         this.resOrg = resOrg;
+        this.signId = signId;
     }
 
+    @Ignore
     public SignData(String target, String duration, String resOrg){
         this.target = target;
         this.duration = duration;
@@ -51,5 +58,47 @@ public class SignData implements Serializable {
         return target;
     }
 
+    public void setTarget(String target){
+        this.target = target;
+    }
 
+    public String getResOrg() {
+        return resOrg;
+    }
+
+    public void setResOrg(String resOrg) {
+        this.resOrg = resOrg;
+    }
+
+    public int getSignId() {
+        return signId;
+    }
+
+    public void setSignId(int signId) {
+        this.signId = signId;
+    }
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public String getPathNumber() {
+        return pathNumber;
+    }
+
+    public void setPathNumber(String pathNumber) {
+        this.pathNumber = pathNumber;
+    }
 }

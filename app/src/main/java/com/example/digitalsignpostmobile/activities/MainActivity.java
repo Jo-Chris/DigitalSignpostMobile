@@ -23,13 +23,16 @@ import android.widget.Toast;
 import com.example.digitalsignpostmobile.R;
 import com.example.digitalsignpostmobile.classes.Camera;
 import com.example.digitalsignpostmobile.database.SignDAO;
+import com.example.digitalsignpostmobile.database.SignDataDAO;
 import com.example.digitalsignpostmobile.database.SignDatabase;
 import com.example.digitalsignpostmobile.model.Image;
 import com.example.digitalsignpostmobile.classes.MainAdapter;
 import com.example.digitalsignpostmobile.model.Sign;
+import com.example.digitalsignpostmobile.model.SignData;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -40,7 +43,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Image> mDataset = new ArrayList<>();
     private FloatingActionButton openCamera;
+    private SignDatabase signDatabase;
     private Uri image_uri;
+    private SignDAO signDAO;
+    private SignDataDAO signDataDAO;
 
     private final String TAG = "MAIN";
 
@@ -50,7 +56,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         initDatabase();
+
+        // only dummy methods
         createTestData();
+        createTestDummyData();
+
+        // retrieve the dummy data
+        getDBData();
+
         initUI();
         addListeners();
 
@@ -69,12 +82,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Delete
     private void createTestDummyData(){
-        // SignDAO signDAO = SignDatabase.getInstance(this).ge
+        signDAO = SignDatabase.getInstance(this).signDao();
+        signDataDAO = SignDatabase.getInstance(this).signDataDAO();
+
+        signDAO.insert(new Sign("Berghuette", "Right", 3, true, "test/test/test"));
+        signDataDAO.insert(new SignData("Wanderweg 1", "20min", "816", "Stadtgemeinde Kufstein", 1));
+        signDataDAO.insert(new SignData("Wanderweg 2", "45min", "236", "Stadtgemeinde Kufstein", 1));
+        signDataDAO.insert(new SignData("Wanderweg 3", "70min", "316", "Stadtgemeinde Kufstein", 1));
+    }
+
+    @Delete
+    private void getDBData() {
+        List<Sign> signDao = signDAO.loadAllUsers();
+
+        for (Sign s: signDao){
+            System.out.println(s.toString());
+        }
     }
 
 
     private void initDatabase(){
-        SignDatabase db = Room.databaseBuilder(getApplicationContext(), SignDatabase.class, "signpost-db").build();
+        signDatabase = Room.databaseBuilder(getApplicationContext(), SignDatabase.class, "signpost-db").build();
     }
 
     private void initUI(){

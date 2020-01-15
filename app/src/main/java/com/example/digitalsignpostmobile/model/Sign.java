@@ -1,34 +1,38 @@
 package com.example.digitalsignpostmobile.model;
-import android.graphics.Bitmap;
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 import java.io.Serializable;
 
-@Entity
+@Entity(indices = {@Index("id")})
 public class Sign implements Serializable {
 
-    @PrimaryKey
-    private int uid;
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    private int id;
     @ColumnInfo(name = "title")
     private String title;
     @ColumnInfo(name = "direction")
     private String direction;
     @ColumnInfo(name = "rowCount")
     private int rowCount;
-    @ColumnInfo(name = "rowCount")
+    @ColumnInfo(name = "hasResOrg")
     private boolean hasResOrg;
-    @ColumnInfo(name = "rowCount")
-    private Bitmap image;
-    @ColumnInfo(name = "signData")
+    @ColumnInfo(name = "image")
+    private String filepath; // convert to Bitmap, or ignore completely...
+
     private static final String TAG = "Sign";
 
-    public Sign(String title, String direction, int rowCount, boolean hasResOrg, Bitmap image) {
+    @Ignore
+    public Sign(String title, String direction, int rowCount, boolean hasResOrg, String filepath) {
         this.title = title;
         this.direction = direction;
         this.rowCount = rowCount;
         this.hasResOrg = hasResOrg;
-        this.image = image;
+        this.filepath = filepath;
     }
 
     public Sign(){
@@ -71,11 +75,32 @@ public class Sign implements Serializable {
         this.hasResOrg = hasResOrg;
     }
 
-    public Bitmap getImage() {
-        return image;
+    public String getFilepath() {
+        return filepath;
     }
 
-    public void setImage(Bitmap image) {
-        this.image = image;
+    public void setFilepath(String image) {
+        this.filepath = image;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    @NonNull
+    public String toString() {
+        return "Sign{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", direction='" + direction + '\'' +
+                ", rowCount=" + rowCount +
+                ", hasResOrg=" + hasResOrg +
+                ", filepath='" + filepath + '\'' +
+                '}';
     }
 }
