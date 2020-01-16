@@ -1,4 +1,4 @@
-package com.example.digitalsignpostmobile.database.DAO;
+package com.example.digitalsignpostmobile.database.DAOs;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -6,7 +6,6 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.digitalsignpostmobile.models.Sign;
 import com.example.digitalsignpostmobile.models.SignData;
 
 import java.util.List;
@@ -25,4 +24,8 @@ public interface SignDataDAO {
 
     @Query("SELECT * FROM signdata WHERE signId = :id")
     List<SignData> getId(int id);
+
+    @Query("SELECT * FROM signdata")
+    List<SignData> getAll();
+
 }

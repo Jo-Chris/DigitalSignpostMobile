@@ -18,9 +18,9 @@ import android.widget.Toast;
 import com.example.digitalsignpostmobile.R;
 import com.example.digitalsignpostmobile.classes.Camera;
 import com.example.digitalsignpostmobile.classes.annotations.DeleteInProduction;
-import com.example.digitalsignpostmobile.database.DAO.SignDAO;
-import com.example.digitalsignpostmobile.database.DAO.SignDataDAO;
-import com.example.digitalsignpostmobile.database.DAO.SignImageDAO;
+import com.example.digitalsignpostmobile.database.DAOs.SignDAO;
+import com.example.digitalsignpostmobile.database.DAOs.SignDataDAO;
+import com.example.digitalsignpostmobile.database.DAOs.SignImageDAO;
 import com.example.digitalsignpostmobile.database.SignDatabase;
 import com.example.digitalsignpostmobile.models.SignImage;
 import com.example.digitalsignpostmobile.adapters.MainAdapter;
@@ -53,16 +53,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         initDatabase();
-
         // only dummy methods
         createTestDummyData();
-
         // retrieve the dummy data
         getDBData();
-
         initUI();
         addListeners();
-
     }
 
     @DeleteInProduction
@@ -81,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             signDAO.insert(new Sign("Berghuette", "Right", 3, true, "test/test/test", 1));
             signDAO.insert(new Sign("Wanderhuette", "Left", 3, true, "test/test/test", 1));
-            signDAO.insert(new Sign("Dosenbier", "Right", 3, true, "test/test/test", 1));
+            signDAO.insert(new Sign("Dosenbier", "Right", 2, true, "test/test/test", 1));
             signDAO.insert(new Sign("Stalahütte", "Left", 3, true, "test/test/test", 1));
             signDAO.insert(new Sign("Mount Sebastian", "Left", 3, true, "test/test/test", 2));
             signDAO.insert(new Sign("Wanderwildweg", "Left", 3, true, "test/test/test", 2));
@@ -103,9 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mDataset.addAll(signImageDAO.getAll());
 
-
         Toast.makeText(this, "Length ist " + signImageDAO.getAll().size(), Toast.LENGTH_SHORT).show();
-
     }
 
     @Delete

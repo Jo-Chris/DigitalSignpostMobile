@@ -6,9 +6,9 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.example.digitalsignpostmobile.database.DAO.SignDAO;
-import com.example.digitalsignpostmobile.database.DAO.SignDataDAO;
-import com.example.digitalsignpostmobile.database.DAO.SignImageDAO;
+import com.example.digitalsignpostmobile.database.DAOs.SignDAO;
+import com.example.digitalsignpostmobile.database.DAOs.SignDataDAO;
+import com.example.digitalsignpostmobile.database.DAOs.SignImageDAO;
 import com.example.digitalsignpostmobile.models.Sign;
 import com.example.digitalsignpostmobile.models.SignData;
 import com.example.digitalsignpostmobile.models.SignImage;

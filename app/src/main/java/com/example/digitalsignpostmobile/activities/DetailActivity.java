@@ -32,24 +32,15 @@ public class DetailActivity extends AppCompatActivity {
         setDataset();
 
         initRecyclerView();
-
     }
 
     public DetailActivity() {}
 
     private void setDataset(){
-        /*
-         * short break:
-         *
-         * We get a specific Image, retrieve the Signs from that and get all the SignData that is
-         * associated with that Sign. We then send these to Lists to the DetailAdapter
-         * who creates the Recyclerview (with the Signs) holding the nested Recyclerview (with the SignData)
-         */
-
         int id = getIntent().getIntExtra("id", 0);
 
         dataset = SignDatabase.getInstance(this).signDao().getId(id);
-        datasetSignData = SignDatabase.getInstance(this).signDataDAO().getId(id);
+        datasetSignData = SignDatabase.getInstance(this).signDataDAO().getAll();
     }
 
     private void initRecyclerView(){
@@ -61,7 +52,6 @@ public class DetailActivity extends AppCompatActivity {
         RecyclerView recycler = findViewById(R.id.detailRecyclerView);
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(new LinearLayoutManager(this));
-        recycler.setAdapter(new DetailAdapter(dataset));
-
+        recycler.setAdapter(new DetailAdapter(dataset, datasetSignData));
     }
 }

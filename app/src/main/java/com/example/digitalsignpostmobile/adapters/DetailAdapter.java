@@ -18,10 +18,14 @@ import java.util.List;
 
 public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.MainViewHolder> {
     private static final String TAG = "DetailAdapter";
-    private List<Sign> dataset; // the signimage contains n-Signs with n-SignRows
+    private List<Sign> dataset;
+    private List<SignData> datasetSignData;
+    private int datasetLength = 0;
 
-    public DetailAdapter(List<Sign> dataset) {
+
+    public DetailAdapter(List<Sign> dataset, List<SignData> datasetSignData) {
         this.dataset = dataset;
+        this.datasetSignData = datasetSignData;
     }
 
     class MainViewHolder extends RecyclerView.ViewHolder {
@@ -34,6 +38,16 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.MainViewHo
 
         MainViewHolder(@NonNull LinearLayout itemView) {
             super(itemView);
+
+            //increase length, to detect current inner recyclerPosition
+            datasetLength++;
+
+            //init the recyclerview in here
+            rowRecyclerView = itemView.findViewById(R.id.rowRecyclerView);
+            rowRecyclerView.setLayoutManager(new LinearLayoutManager(itemView.getContext()));
+
+            // only add the data belonging to that specific sign
+            rowRecyclerView.setAdapter(new RowAdapter(SignData.createSubSet(datasetSignData, datasetLength)));
 
             // initialize the UI widgets
             linearLayout = itemView.findViewById(R.id.linearLayoutRV);
@@ -60,9 +74,6 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.MainViewHo
         holder.direction.setText(sign.getDirection());
         holder.rowNumber.setText(String.valueOf(sign.getRowCount()));
         holder.responsibleOrganisation.setText(String.valueOf(sign.isResOrgAvailable()));
-
-
-
     }
 
     @Override

@@ -8,6 +8,8 @@ import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(foreignKeys = @ForeignKey(
         entity = Sign.class,
@@ -49,6 +51,19 @@ public class SignData implements Serializable {
         this.duration = duration;
         this.resOrg = resOrg;
     }
+
+    public static List<SignData> createSubSet(List<SignData> signDataList, int id){
+        List<SignData> subSet = new ArrayList<>();
+
+        for (SignData s : signDataList) {
+            if (s.getSignId() == id) {
+                subSet.add(s);
+            }
+        }
+        return subSet;
+    }
+
+
 
     public String getFormattedOutput(){
         return target + " " + duration + " " + pathNumber;

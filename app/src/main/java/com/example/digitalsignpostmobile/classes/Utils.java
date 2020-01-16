@@ -13,4 +13,5 @@ public class Utils {
     public static void DEBUG_OUTPUT(Activity a, String s, int length){
         Toast.makeText(a, s, length).show();
     }
+
 }

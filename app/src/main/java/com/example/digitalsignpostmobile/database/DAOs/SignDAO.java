@@ -1,4 +1,4 @@
-package com.example.digitalsignpostmobile.database.DAO;
+package com.example.digitalsignpostmobile.database.DAOs;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -8,7 +8,6 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.digitalsignpostmobile.models.Sign;
-import com.example.digitalsignpostmobile.models.SignImage;
 
 import java.util.List;
 

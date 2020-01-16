@@ -1,6 +1,5 @@
-package com.example.digitalsignpostmobile.database.DAO;
+package com.example.digitalsignpostmobile.database.DAOs;
 
-import com.example.digitalsignpostmobile.models.Sign;
 import com.example.digitalsignpostmobile.models.SignImage;
 
 import java.util.List;

@@ -105,10 +105,11 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rowRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         tools:listitem="@layout/detail_view_row_data"
-        android:id="@+id/rowRecyclerView"/>
+        />
 
     <Button
         android:layout_width="match_parent"
