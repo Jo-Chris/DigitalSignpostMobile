@@ -20,6 +20,6 @@
     <string name="loeschen">Löschen</string>
     <string name="n_v">N/V</string>
     <string name="zeile_x">Zeile X</string>
-
+    <string name="loaderText">Bitte warten...</string>
 
 </resources>
