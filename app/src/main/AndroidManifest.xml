@@ -10,8 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity
-            android:name=".activities.DetailActivity"></activity>
+        <activity android:name=".activities.DetailActivity" />
         <activity
             android:name=".activities.SplashActivity"
             android:theme="@style/AppTheme.SplashScreen">
@@ -33,5 +32,8 @@
         android:required="true" />
     <uses-permission
         android:name="android.permission.CAMERA"
+        android:required="true" />
+    <uses-permission
+        android:name="android.permission.INTERNET"
         android:required="true" />
 </manifest>

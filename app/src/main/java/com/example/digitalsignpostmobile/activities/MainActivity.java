@@ -91,8 +91,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             signDataDAO.insert(new SignData("Zirler-Data 2", "1 min", "316", "Stadtgemeinde Kufstein", 3));
             signDataDAO.insert(new SignData("Zirler-Data 3", "12min", "316", "Stadtgemeinde Kufstein", 3));
 
-            signDAO.insert(new Sign("Wanderhütte-Weg 4", "Left", 3, true, "test/test/test", 1));
-            signDAO.insert(new Sign("Watzmann-Weg 1", "Right", 3, true, "test/test/test", 4));
+            //signDAO.insert(new Sign("Wanderhütte-Weg 4", "Left", 3, true, "test/test/test", 1));
+            //signDAO.insert(new Sign("Watzmann-Weg 1", "Right", 3, true, "test/test/test", 4));
 
 
         }
