@@ -28,21 +28,18 @@ public class Sign implements Serializable {
     @ColumnInfo(name = "rowCount")
     private int rowCount;
     @ColumnInfo(name = "resOrgAvailable")
-    private boolean resOrgAvailable;
-    @ColumnInfo(name = "image")
-    private String filepath; // convert to Bitmap, or ignore completely...
+    private String resOrgAvailable;
     @ColumnInfo(name = "itemId")
     private int itemId;
 
     private static final String TAG = "Sign";
 
     @Ignore
-    public Sign(String title, String direction, int rowCount, boolean hasResOrg, String filepath, int itemId) {
+    public Sign(String title, String direction, int rowCount, String resOrg, int itemId) {
         this.title = title;
         this.direction = direction;
         this.rowCount = rowCount;
-        this.resOrgAvailable = hasResOrg;
-        this.filepath = filepath;
+        this.resOrgAvailable = resOrg;
         this.itemId = itemId;
     }
 
@@ -78,20 +75,16 @@ public class Sign implements Serializable {
         this.rowCount = rowCount;
     }
 
-    public boolean isResOrgAvailable() {
+    public String isResOrgAvailable() {
         return resOrgAvailable;
     }
 
-    public void setResOrgAvailable(boolean resOrgAvailable) {
+    public void setResOrgAvailable(String resOrgAvailable) {
         this.resOrgAvailable = resOrgAvailable;
     }
 
-    public String getFilepath() {
-        return filepath;
-    }
-
-    public void setFilepath(String image) {
-        this.filepath = image;
+    public String getResOrgAvailable() {
+        return resOrgAvailable;
     }
 
     public int getId() {
@@ -123,7 +116,6 @@ public class Sign implements Serializable {
                 ", direction='" + direction + '\'' +
                 ", rowCount=" + rowCount +
                 ", resOrgAvailable=" + resOrgAvailable +
-                ", filepath='" + filepath + '\'' +
                 '}';
     }
 }

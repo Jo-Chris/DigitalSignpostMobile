@@ -2,8 +2,11 @@ package com.example.digitalsignpostmobile.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,20 +16,22 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.example.digitalsignpostmobile.R;
 import com.example.digitalsignpostmobile.classes.RequestHandler;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.net.URI;
+import com.example.digitalsignpostmobile.classes.SignMapper;
+import com.example.digitalsignpostmobile.interfaces.AsyncResponse;
 
-public class ImageActivity extends AppCompatActivity implements View.OnClickListener{
+import org.json.JSONException;
+
+import java.io.ByteArrayOutputStream;
+
+public class ImageActivity extends AppCompatActivity implements View.OnClickListener, AsyncResponse {
 
     private ImageView imageView;
     private Button buttonSave;
     private ConstraintLayout loaderView;
-    private URI receivedImageUri;
+    private CircularProgressButton circButton;
     private Bitmap imageBm;
     private final String TAG = "ImageActivity";
 
@@ -36,15 +41,15 @@ public class ImageActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_image);
 
         initUI();
-
         showImageCaptured(getIntentData());
+
     }
 
     private void initUI(){
         imageView = findViewById(R.id.imageView);
         loaderView = findViewById(R.id.loaderView);
-        buttonSave = findViewById(R.id.buttonSave);
-        buttonSave.setOnClickListener(this);
+        circButton = findViewById(R.id.buttonSave);
+        circButton.setOnClickListener(this);
     }
 
 
@@ -74,13 +79,13 @@ public class ImageActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         if (v.getId()==R.id.buttonSave){
-            Toast.makeText(this, "Starting", Toast.LENGTH_SHORT).show();
+            circButton.startAnimation();
 
-            Log.d(TAG, "Starting");
+            final RequestHandler asyncTask = new RequestHandler();
+            asyncTask.delegate = this;
+
 
             new Thread(new Runnable() {
-
-                RequestHandler background = new RequestHandler();
                 ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
                 public void run() {
                     Log.d(TAG, "Starting to compress...");
@@ -88,10 +93,26 @@ public class ImageActivity extends AppCompatActivity implements View.OnClickList
                     imageBm.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
                     String encodedImage= Base64.encodeToString(byteArrayOutputStream.toByteArray(),Base64.DEFAULT);
                     Log.d(TAG, encodedImage);
-                    background.execute(encodedImage); //call to AsyncTask
+                    asyncTask.execute(encodedImage); //call to AsyncTask
                 }
             }).start();
 
         }
     }
+
+    @Override
+    public void onGetSignData(String data) {
+        circButton.doneLoadingAnimation(Color.parseColor("#A78966"), BitmapFactory.decodeResource(getResources(), R.drawable.ic_done_white_48dp));
+        System.out.println("Submitted = " + data);
+
+        SignMapper signMapper = new SignMapper(getApplicationContext());
+
+        try {
+            signMapper.prepareJSONData(data);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
+

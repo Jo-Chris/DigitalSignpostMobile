@@ -75,25 +75,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // only add dummy data, if empty
         if (signImageDAO.getAll().size() == 0){
 
-
+        /*
             signImageDAO.insert(new SignImage("Wanderhütte", 4, 43.2312312, 84.1231231));
-            signDAO.insert(new Sign("Wanderhütte-Weg 1", "Right", 3, true, "test/test/test", 1));
-            signDataDAO.insert(new SignData("Wanderhütte-Data 1", "20min", "816", "Stadtgemeinde Kufstein", 1));
-            signDataDAO.insert(new SignData("Wanderhütte-Data 2", "45min", "236", "Stadtgemeinde Kufstein", 1));
-            signDataDAO.insert(new SignData("Wanderhütte-Data 3", "70min", "316", "Stadtgemeinde Kufstein", 1));
+            signDAO.insert(new Sign("Wanderhütte-Weg 1", "Right", 3, "Stadtgemeinde Kufstein", 1));
+            signDataDAO.insert(new SignData("Wanderhütte-Data 1", "20min", "816", 1));
+            signDataDAO.insert(new SignData("Wanderhütte-Data 2", "45min", "236", 1));
+            signDataDAO.insert(new SignData("Wanderhütte-Data 3", "70min", "316", 1));
 
-            signDAO.insert(new Sign("Wanderhütte-Weg 2", "Left", 3, true, "test/test/test", 1));
-            signDataDAO.insert(new SignData("Großglocker-Data 1", "50min", "316", "Stadtgemeinde Kufstein", 2));
-            signDataDAO.insert(new SignData("Großglocker-Data 2", "55min", "316", "Stadtgemeinde Kufstein", 2));
-            signDataDAO.insert(new SignData("Großglocker-Data 3", "45min", "316", "Stadtgemeinde Kufstein", 2));
+            signDAO.insert(new Sign("Wanderhütte-Weg 2", "Left", 3, "Stadtgemeinde Kufstein", 1));
+            signDataDAO.insert(new SignData("Großglocker-Data 1", "50min", "316", 2));
+            signDataDAO.insert(new SignData("Großglocker-Data 2", "55min", "316", 2));
+            signDataDAO.insert(new SignData("Großglocker-Data 3", "45min", "316", 2));
 
-            signDAO.insert(new Sign("Wanderhütte-Weg 3", "Right", 2, true, "test/test/test", 1));
-            signDataDAO.insert(new SignData("Zirler-Data 2", "1 min", "316", "Stadtgemeinde Kufstein", 3));
-            signDataDAO.insert(new SignData("Zirler-Data 3", "12min", "316", "Stadtgemeinde Kufstein", 3));
+            signDAO.insert(new Sign("Wanderhütte-Weg 3", "Right", 2, "Stadtgemeinde Kufstein", 1));
+            signDataDAO.insert(new SignData("Zirler-Data 2", "1 min", "316", 3));
+            signDataDAO.insert(new SignData("Zirler-Data 3", "12min", "316", 3));
 
             //signDAO.insert(new Sign("Wanderhütte-Weg 4", "Left", 3, true, "test/test/test", 1));
             //signDAO.insert(new Sign("Watzmann-Weg 1", "Right", 3, true, "test/test/test", 4));
-
+*/
 
         }
 

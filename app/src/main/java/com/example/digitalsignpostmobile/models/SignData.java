@@ -29,19 +29,16 @@ public class SignData implements Serializable {
     private String duration;
     @ColumnInfo(name = "pathNumber")
     private String pathNumber;
-    @ColumnInfo(name = "resOrg")
-    private String resOrg;
     @ColumnInfo(name = "signId")
     private int signId;
 
     public SignData(){ }
 
     @Ignore
-    public SignData(String target, String duration, String pathNumber, String resOrg, int signId){
+    public SignData(String target, String duration, String pathNumber, int signId){
         this.target = target;
         this.duration = duration;
         this.pathNumber = pathNumber;
-        this.resOrg = resOrg;
         this.signId = signId;
     }
 
@@ -49,7 +46,6 @@ public class SignData implements Serializable {
     public SignData(String target, String duration, String resOrg){
         this.target = target;
         this.duration = duration;
-        this.resOrg = resOrg;
     }
 
     public static List<SignData> createSubSet(List<SignData> signDataList, int id){
@@ -75,14 +71,6 @@ public class SignData implements Serializable {
 
     public void setTarget(String target){
         this.target = target;
-    }
-
-    public String getResOrg() {
-        return resOrg;
-    }
-
-    public void setResOrg(String resOrg) {
-        this.resOrg = resOrg;
     }
 
     public int getSignId() {
