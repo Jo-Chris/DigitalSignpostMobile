@@ -34,7 +34,7 @@ public class RequestHandler extends AsyncTask<String, Integer, String> {
     private BufferedReader bufferedReader;
     private StringBuilder stringBuilder;
     private String signReponse;
-    private final String urlServer = "http://10.0.2.2:5000/detect";
+    private final String urlServer = "http://10.0.2.2:5000/detect?debug=1";
     private static final String TAG = "RequestHandler";
     public AsyncResponse delegate = null;
 
@@ -80,10 +80,8 @@ public class RequestHandler extends AsyncTask<String, Integer, String> {
             stringBuilder = new StringBuilder();
 
             try{
-                while ((signReponse = bufferedReader.readLine()) != null) {
+                while ((signReponse = bufferedReader.readLine()) != null)
                     stringBuilder.append(signReponse).append("\n");
-                }
-
             } catch (ProtocolException e){
                 System.out.println("We desperately need to resolve this Error!");
             }

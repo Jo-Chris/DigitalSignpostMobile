@@ -51,16 +51,28 @@ public class SignMapper {
         //System.out.println(signs.getJSONObject(0));
         // determine, how many objects there are!
         signAmount = countJSONObjects(signs);
-
     }
 
-    public int getAndSaveSigns() throws JSONException {
+    public void getAndSaveSigns() throws JSONException {
 
-        signImageDAO.insert(new SignImage("Neues Wanderschild", 4, 123, 123));
+        signImageDAO.insert(new SignImage("Neues Wanderschild", signAmount, 123, 123));
+
+        System.out.println(signs);
+        System.out.println(signs.get(0));
+        System.out.println(signs.getJSONObject(0).getString("direction"));
 
         for (int i = 0; i < signAmount; i++) {
             JSONObject targetRow = signs.getJSONObject(i);
-            signDAO.insert(new Sign("Wanderschild " + i, "test", 3, "test", signImageDAO.getAll().size()));
+            String resOrg = signs.getJSONObject(0).getString("responsibleOrganisation");
+            int direction = Integer.parseInt(signs.getJSONObject(0).getString("direction"));
+            signDAO.insert(
+                    new Sign("Wanderschild " + i,
+                            direction == 0 ? "Left" : "Right",
+                            targetRow.getJSONArray("lines").length(),
+                            resOrg.equals("") ? "-" : resOrg,
+                            signImageDAO.getAll().size()
+                    )
+            );
 
             JSONArray lineArray = targetRow.getJSONArray("lines");
 
@@ -73,8 +85,6 @@ public class SignMapper {
                         signDAO.getAll().size()));
             }
         }
-
-        return signImageDAO.getAll().size();
     }
 
     private int countJSONObjects(JSONArray obj){
