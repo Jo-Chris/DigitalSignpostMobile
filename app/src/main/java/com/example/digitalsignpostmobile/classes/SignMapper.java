@@ -45,11 +45,8 @@ public class SignMapper {
 
         JSONObject jsonObject = new JSONObject(data);
 
-        // get the top signs
         signs = (JSONArray) jsonObject.get("signs");
-        // this will get us the first Sign!
-        //System.out.println(signs.getJSONObject(0));
-        // determine, how many objects there are!
+
         signAmount = countJSONObjects(signs);
     }
 
@@ -66,10 +63,10 @@ public class SignMapper {
             String resOrg = signs.getJSONObject(0).getString("responsibleOrganisation");
             int direction = Integer.parseInt(signs.getJSONObject(0).getString("direction"));
             signDAO.insert(
-                    new Sign("Wanderschild " + i,
-                            direction == 0 ? "Left" : "Right",
+                    new Sign("Wanderschild " + (++i),
+                            direction == 0 ? "Links" : "Rechts",
                             targetRow.getJSONArray("lines").length(),
-                            resOrg.equals("") ? "-" : resOrg,
+                            resOrg.equals("") ? "Nein" : "Ja",
                             signImageDAO.getAll().size()
                     )
             );

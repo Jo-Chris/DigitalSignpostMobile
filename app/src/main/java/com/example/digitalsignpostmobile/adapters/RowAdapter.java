@@ -1,4 +1,6 @@
 package com.example.digitalsignpostmobile.adapters;
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.digitalsignpostmobile.R;
+import com.example.digitalsignpostmobile.activities.DetailActivity;
 import com.example.digitalsignpostmobile.database.SignDatabase;
 import com.example.digitalsignpostmobile.models.Sign;
 import com.example.digitalsignpostmobile.models.SignData;
@@ -64,7 +67,7 @@ public class RowAdapter extends RecyclerView.Adapter<RowAdapter.MainViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(MainViewHolder holder, int position) {
+    public void onBindViewHolder(@NotNull MainViewHolder holder, int position) {
         final SignData signData = dataset.get(position);
 
         // holder.imageTitle.setText(sign.getTitle());
@@ -75,12 +78,13 @@ public class RowAdapter extends RecyclerView.Adapter<RowAdapter.MainViewHolder> 
         }
 
         if(signData.getDuration().isEmpty()){
-            holder.duration.setHint("duration");
+            holder.duration.setHint("Wanderzeit");
         }else{
             holder.duration.setText(signData.getDuration());
         }
 
-        holder.rowNumber.setText(holder.target.getContext().getResources().getString(R.string.points_string, position += 1)); // create resource string if bored
+        holder.rowNumber.setText(holder.target.getContext().getResources().getString(R.string.points_string, position += 1).toUpperCase()); // create resource string if bored
+
 
     }
 

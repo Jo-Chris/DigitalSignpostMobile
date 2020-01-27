@@ -20,9 +20,9 @@
     <string name="loeschen">Löschen</string>
     <string name="n_v">N/V</string>
     <string name="zeile_x">Zeile X</string>
-    <string name="loaderText">Bitte warten...</string>
+    <string name="loaderText">Bitte warten…</string>
     <string name="empty" />
-    <string name="found_x_signs">Es wurde X Wanderschilder detektiert!</string>
+    <string name="found_x_signs">Es wurden X Wanderschilder detektiert!</string>
     <string name="anzeigen">Anzeigen</string>
 
     <string name="points_string">Zeile: %1$d</string>

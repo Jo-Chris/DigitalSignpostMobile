@@ -74,7 +74,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mDataset.addAll(signImageDAO.getAll());
 
-        Toast.makeText(this, "Length ist " + signImageDAO.getAll().size(), Toast.LENGTH_SHORT).show();
     }
 
     @Delete

@@ -1,12 +1,7 @@
 package com.example.digitalsignpostmobile.classes;
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.digitalsignpostmobile.activities.ImageActivity;
-import com.example.digitalsignpostmobile.activities.MainActivity;
 import com.example.digitalsignpostmobile.classes.annotations.Bug;
 import com.example.digitalsignpostmobile.interfaces.AsyncResponse;
 
@@ -79,11 +74,14 @@ public class RequestHandler extends AsyncTask<String, Integer, String> {
             bufferedReader = new BufferedReader(new InputStreamReader((inputStream)));
             stringBuilder = new StringBuilder();
 
-            try{
+            String response = "";
+
+            try {
                 while ((signReponse = bufferedReader.readLine()) != null)
                     stringBuilder.append(signReponse).append("\n");
-            } catch (ProtocolException e){
-                System.out.println("We desperately need to resolve this Error!");
+                    response = stringBuilder.toString().trim();
+            }catch (ProtocolException e){
+                System.out.println(response);
             }
 
 

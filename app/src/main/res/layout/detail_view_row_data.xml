@@ -11,6 +11,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="13sp"
         android:text="@string/zeile_x"
         />
 
@@ -19,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        style="@style/BorderedTextInputStyle">
 
         <EditText
             android:id="@+id/targetValue"
@@ -36,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        style="@style/BorderedTextInputStyle">
 
         <EditText
             android:id="@+id/durationValue"
@@ -44,6 +47,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/empty"
             android:inputType="text"
+            android:textColorHighlight="@color/colorPrimary"
             android:importantForAutofill="no"/>
 
 

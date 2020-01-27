@@ -3,9 +3,10 @@
 
     <!-- our defined main colors -->
 
-    <color name="colorPrimary">#A78966</color>
-    <color name="colorPrimaryDark">#806749</color>
-    <color name="colorAccent">#22A6B3</color>
+    <color name="colorPrimary">#F1C40F</color>
+    <color name="colorPrimaryDark">#FFB60F</color>
+    <color name="colorAccent">#6A563D</color>
+    <color name="colorAccentLight">#806749</color>
 
     <!-- further colors (quick use) -->
     <color name="white">#FFFFFF</color>
