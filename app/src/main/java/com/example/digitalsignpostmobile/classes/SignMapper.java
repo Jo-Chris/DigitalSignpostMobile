@@ -63,7 +63,7 @@ public class SignMapper {
             String resOrg = signs.getJSONObject(0).getString("responsibleOrganisation");
             int direction = Integer.parseInt(signs.getJSONObject(0).getString("direction"));
             signDAO.insert(
-                    new Sign("Wanderschild " + (++i),
+                    new Sign("Wanderschild " + (i+1),
                             direction == 0 ? "Links" : "Rechts",
                             targetRow.getJSONArray("lines").length(),
                             resOrg.equals("") ? "Nein" : "Ja",
