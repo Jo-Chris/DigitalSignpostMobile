@@ -2,6 +2,7 @@ package com.example.digitalsignpostmobile.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder> {
     private static final String TAG = "MainAdapter";
     private ArrayList<SignImage> mDataset;
+
     public MainAdapter(ArrayList<SignImage> listData) {
         mDataset = listData;
     }
@@ -29,19 +31,20 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
     static class MainViewHolder extends RecyclerView.ViewHolder {
         private LinearLayout linearLayout;
         private TextView imageTitle;
-        private TextView imageCoords;
         private TextView numberOfSigns;
         private TextView numberOfSignsLabel;
+        private RecyclerView recyclerViewMain;
 
         MainViewHolder(@NonNull LinearLayout itemView) {
             super(itemView);
 
             linearLayout = itemView.findViewById(R.id.linearLayout);
             imageTitle = itemView.findViewById(R.id.imageTitle);
-            imageCoords = itemView.findViewById(R.id.imageCoords);
             numberOfSigns = itemView.findViewById(R.id.numberOfSigns);
             numberOfSignsLabel = itemView.findViewById(R.id.numberOfSignsLabel);
+            recyclerViewMain = itemView.findViewById(R.id.recyclerViewMain);
         }
+
     }
 
     @Override
@@ -60,7 +63,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
         final SignImage mListData = mDataset.get(position);
 
         holder.imageTitle.setText(mListData.getTitle());
-        holder.imageCoords.setText(mListData.getCoords());
         holder.numberOfSigns.setText(String.valueOf(mListData.getNumberOfSigns()));
 
         if (mListData.getNumberOfSigns() == 1) {
@@ -79,6 +81,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
             }
         });
     }
+
 
     @Override
     public int getItemCount() {

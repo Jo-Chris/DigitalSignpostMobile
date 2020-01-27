@@ -14,10 +14,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ListIterator;
-
 /**
  * Responsible for handling JSON Response returned by the Flask Server
  */
@@ -56,66 +52,30 @@ public class SignMapper {
         // determine, how many objects there are!
         signAmount = countJSONObjects(signs);
 
-        createSigns();
     }
 
-    /**
-     *
-     * for 1 Sign:
-     *
-     * create that sign and create that signdata!
-     *
-     * @throws JSONException
-     */
-    private void createSigns() throws JSONException {
-        // System.out.println((arr.getJSONObject(0))); -- Gets target line number ONE!
-        // System.out.println((signs.getJSONObject(0))); -- Gets the whole sign number one
+    public int getAndSaveSigns() throws JSONException {
 
-        signImageDAO.insert(new SignImage("Fotzenweg", 4, 123, 123));
+        signImageDAO.insert(new SignImage("Neues Wanderschild", 4, 123, 123));
 
-        // iterate over all signs (f.e - 4)
         for (int i = 0; i < signAmount; i++) {
-            // for every sign, create a Sign and the corresponding signdata!
             JSONObject targetRow = signs.getJSONObject(i);
+            signDAO.insert(new Sign("Wanderschild " + i, "test", 3, "test", signImageDAO.getAll().size()));
 
-            signDAO.insert(new Sign("Sign Number" + i, "test", 3, "test", signImageDAO.getAll().size()));
+            JSONArray lineArray = targetRow.getJSONArray("lines");
 
-            for (int j = 0; j < targetRow.length(); j++) {
-                System.out.println("Target-Row has length of" + targetRow.length());
-                //now get the target line number X
-                JSONArray lineArray = targetRow.getJSONArray("lines");
-                System.out.println("Line-Array has length of" + lineArray.length());
-                for (int k = 0; k < lineArray.length(); k++) {
-                    JSONObject singleRow = lineArray.getJSONObject(k);
-                    signDataDAO.insert(new SignData(
-                            singleRow.get("target").toString(),
-                            singleRow.get("duration").toString(),
-                            singleRow.get("pathNumber").toString(),
-                            i+1));
-                }
+            for (int k = 0; k < lineArray.length(); k++) {
+                JSONObject singleRow = lineArray.getJSONObject(k);
+                signDataDAO.insert(new SignData(
+                        singleRow.get("target").toString(),
+                        singleRow.get("duration").toString(),
+                        singleRow.get("pathNumber").toString(),
+                        signDAO.getAll().size()));
             }
         }
 
-
-
+        return signImageDAO.getAll().size();
     }
-
-
-
-
-
-
-    /**
-     *             signDAO.insert((new Sign(
-     *                     "Kufsteiner Scheißweg",
-     *                     "duraton",
-     *                     arr.length(),
-     *                     "Should be res org, but fuck this shit",
-     *                     signImageDAO.getAll().size()-1)));
-     * @param obj
-     * @return
-     */
-
 
     private int countJSONObjects(JSONArray obj){
         int counter = 0;
@@ -128,6 +88,10 @@ public class SignMapper {
             }
         }
         return counter;
+    }
+
+    public int getAmountOfDetectedSigns(){
+        return signAmount;
     }
 
 }

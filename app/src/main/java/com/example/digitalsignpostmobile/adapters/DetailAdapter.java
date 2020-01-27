@@ -3,6 +3,7 @@ package com.example.digitalsignpostmobile.adapters;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -35,6 +36,7 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.MainViewHo
         private TextView rowNumber;
         private TextView responsibleOrganisation;
         private RecyclerView rowRecyclerView;
+        private Button removeRow;
 
         MainViewHolder(@NonNull LinearLayout itemView) {
             super(itemView);
@@ -74,6 +76,7 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.MainViewHo
         holder.direction.setText(sign.getDirection());
         holder.rowNumber.setText(String.valueOf(sign.getRowCount()));
         holder.responsibleOrganisation.setText(String.valueOf(sign.isResOrgAvailable()));
+
     }
 
     @Override

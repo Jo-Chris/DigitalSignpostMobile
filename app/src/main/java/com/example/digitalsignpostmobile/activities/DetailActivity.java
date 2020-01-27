@@ -32,6 +32,7 @@ public class DetailActivity extends AppCompatActivity {
         setDataset();
 
         initRecyclerView();
+
     }
 
     public DetailActivity() {}
@@ -43,6 +44,7 @@ public class DetailActivity extends AppCompatActivity {
         datasetSignData = SignDatabase.getInstance(this).signDataDAO().getAll();
     }
 
+
     private void initRecyclerView(){
 
         if (getSupportActionBar() != null){
@@ -52,6 +54,9 @@ public class DetailActivity extends AppCompatActivity {
         RecyclerView recycler = findViewById(R.id.detailRecyclerView);
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(new LinearLayoutManager(this));
-        recycler.setAdapter(new DetailAdapter(dataset, datasetSignData));
+
+        adapter = new DetailAdapter(dataset, datasetSignData);
+        recycler.setAdapter(adapter);
+
     }
 }

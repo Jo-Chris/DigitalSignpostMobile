@@ -28,7 +28,7 @@
                 android:contentDescription="@string/show_the_captured_image"
                 app:srcCompat="@android:color/darker_gray" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -40,22 +40,8 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="40dp"
                     android:text="@string/beispieltext"
-                    android:textSize="25sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textSize="20sp" />
 
-                <TextView
-                    android:id="@+id/imageCoords"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="40dp"
-                    android:text="@string/beispieltext"
-                    android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="@+id/imageTitle"
-                    app:layout_constraintStart_toStartOf="@+id/imageTitle"
-                    app:layout_constraintTop_toBottomOf="@+id/imageTitle" />
 
                 <TextView
                     android:id="@+id/numberOfSigns"
@@ -71,9 +57,8 @@
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:lineHeight="22dp" />
+                    app:lineHeight="22dp"
+                    android:layout_alignParentBottom="true"/>
 
                 <TextView
                     android:id="@+id/numberOfSignsLabel"
@@ -82,10 +67,9 @@
                     android:layout_marginStart="5dp"
                     android:text="@string/label_signs"
                     android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/numberOfSigns"
-                    app:layout_constraintStart_toEndOf="@+id/numberOfSigns"
-                    app:layout_constraintTop_toTopOf="@+id/numberOfSigns" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:layout_toEndOf="@id/numberOfSigns"
+                    android:layout_alignBaseline="@id/numberOfSigns"/>
+            </RelativeLayout>
 
         </LinearLayout>
 

@@ -16,8 +16,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
+
 import com.example.digitalsignpostmobile.R;
+import com.example.digitalsignpostmobile.classes.DialogHandler;
 import com.example.digitalsignpostmobile.classes.RequestHandler;
 import com.example.digitalsignpostmobile.classes.SignMapper;
 import com.example.digitalsignpostmobile.interfaces.AsyncResponse;
@@ -103,16 +104,18 @@ public class ImageActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onGetSignData(String data) {
         circButton.doneLoadingAnimation(Color.parseColor("#A78966"), BitmapFactory.decodeResource(getResources(), R.drawable.ic_done_white_48dp));
-        System.out.println("Submitted = " + data);
 
         SignMapper signMapper = new SignMapper(getApplicationContext());
 
         try {
             signMapper.prepareJSONData(data);
+            signMapper.getAndSaveSigns();
+
+            DialogHandler.showSuccessDialogAndStartActivity(this, "Es wurden " + signMapper.getAmountOfDetectedSigns() + " Wanderschilder gefunden!");
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
 }
 
