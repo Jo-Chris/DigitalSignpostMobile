@@ -68,8 +68,18 @@ public class RowAdapter extends RecyclerView.Adapter<RowAdapter.MainViewHolder> 
         final SignData signData = dataset.get(position);
 
         // holder.imageTitle.setText(sign.getTitle());
-        holder.target.setText(signData.getTarget());
-        holder.duration.setText(signData.getDuration());
+        if(signData.getTarget().isEmpty()){
+            holder.target.setHint("target");
+        }else{
+            holder.target.setText(signData.getTarget());
+        }
+
+        if(signData.getDuration().isEmpty()){
+            holder.duration.setHint("duration");
+        }else{
+            holder.duration.setText(signData.getDuration());
+        }
+
         holder.rowNumber.setText(holder.target.getContext().getResources().getString(R.string.points_string, position += 1)); // create resource string if bored
 
     }

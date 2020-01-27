@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.example.digitalsignpostmobile.activities.ImageActivity;
 import com.example.digitalsignpostmobile.activities.MainActivity;
+import com.example.digitalsignpostmobile.classes.annotations.Bug;
 import com.example.digitalsignpostmobile.interfaces.AsyncResponse;
 
 import java.io.BufferedReader;
@@ -47,6 +48,7 @@ public class RequestHandler extends AsyncTask<String, Integer, String> {
         return signReponse;
     }
 
+    @Bug(cause = "Unexpected end of line at the try-catch block (S 80-10)")
     @Override
     protected String doInBackground(String[] encodedImage) {
 
@@ -81,7 +83,8 @@ public class RequestHandler extends AsyncTask<String, Integer, String> {
                 while ((signReponse = bufferedReader.readLine()) != null) {
                     stringBuilder.append(signReponse).append("\n");
                 }
-            }catch (ProtocolException e){
+
+            } catch (ProtocolException e){
                 System.out.println("We desperately need to resolve this Error!");
             }
 
