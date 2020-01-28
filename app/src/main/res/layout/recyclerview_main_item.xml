@@ -22,9 +22,10 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/image"
+                android:id="@+id/signImageMain"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:scaleType="centerCrop"
                 android:contentDescription="@string/show_the_captured_image"
                 app:srcCompat="@android:color/darker_gray" />
 

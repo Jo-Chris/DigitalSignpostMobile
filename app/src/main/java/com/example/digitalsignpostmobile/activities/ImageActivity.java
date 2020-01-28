@@ -2,8 +2,6 @@ package com.example.digitalsignpostmobile.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
-
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -18,14 +16,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.digitalsignpostmobile.R;
+import com.example.digitalsignpostmobile.classes.BitmapSerializer;
 import com.example.digitalsignpostmobile.classes.DialogHandler;
 import com.example.digitalsignpostmobile.classes.RequestHandler;
 import com.example.digitalsignpostmobile.classes.SignMapper;
+import com.example.digitalsignpostmobile.database.SignDatabase;
 import com.example.digitalsignpostmobile.interfaces.AsyncResponse;
 
 import org.json.JSONException;
 
 import java.io.ByteArrayOutputStream;
+
+import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 
 public class ImageActivity extends AppCompatActivity implements View.OnClickListener, AsyncResponse {
 
@@ -86,12 +88,17 @@ public class ImageActivity extends AppCompatActivity implements View.OnClickList
             asyncTask.delegate = this;
 
 
+            final int length = SignDatabase.getInstance(v.getContext()).signImageDAO().getAll().size();
+
             new Thread(new Runnable() {
                 ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
                 public void run() {
                     Log.d(TAG, "Starting to compress...");
 
                     imageBm.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+
+                    Log.d(TAG, BitmapSerializer.saveToInternalStorage(getApplicationContext(), imageBm, "image_" + length + ".jpg"));
+
                     String encodedImage= Base64.encodeToString(byteArrayOutputStream.toByteArray(),Base64.DEFAULT);
                     Log.d(TAG, encodedImage);
                     asyncTask.execute(encodedImage); //call to AsyncTask

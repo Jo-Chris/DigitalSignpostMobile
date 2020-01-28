@@ -52,7 +52,10 @@ public class SignMapper {
 
     public void getAndSaveSigns() throws JSONException {
 
-        signImageDAO.insert(new SignImage("Neues Wanderschild", signAmount, 123, 123));
+        int counter = signImageDAO.getAll().size();
+        counter++;
+
+        signImageDAO.insert(new SignImage("Bild " + counter, signAmount, 123, 123));
 
         System.out.println(signs);
         System.out.println(signs.get(0));

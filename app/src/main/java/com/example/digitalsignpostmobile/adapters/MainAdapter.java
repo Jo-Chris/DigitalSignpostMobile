@@ -2,11 +2,13 @@ package com.example.digitalsignpostmobile.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.digitalsignpostmobile.R;
 import com.example.digitalsignpostmobile.activities.DetailActivity;
+import com.example.digitalsignpostmobile.classes.BitmapSerializer;
 import com.example.digitalsignpostmobile.models.SignImage;
 
 import java.util.ArrayList;
@@ -23,6 +26,8 @@ import java.util.ArrayList;
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder> {
     private static final String TAG = "MainAdapter";
     private ArrayList<SignImage> mDataset;
+
+    public static Context context;
 
     public MainAdapter(ArrayList<SignImage> listData) {
         mDataset = listData;
@@ -34,6 +39,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
         private TextView numberOfSigns;
         private TextView numberOfSignsLabel;
         private RecyclerView recyclerViewMain;
+        private ImageView signImageBitmap;
+
 
         MainViewHolder(@NonNull LinearLayout itemView) {
             super(itemView);
@@ -43,6 +50,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
             numberOfSigns = itemView.findViewById(R.id.numberOfSigns);
             numberOfSignsLabel = itemView.findViewById(R.id.numberOfSignsLabel);
             recyclerViewMain = itemView.findViewById(R.id.recyclerViewMain);
+            signImageBitmap = itemView.findViewById(R.id.signImageMain);
+
         }
 
     }
@@ -51,6 +60,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
     public MainAdapter.MainViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         LinearLayout v = (LinearLayout) layoutInflater.inflate(R.layout.recyclerview_main_item, parent, false);
+
+        MainAdapter.context = parent.getContext();
 
         return new MainViewHolder(v);
     }
@@ -71,10 +82,11 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
             holder.numberOfSignsLabel.setText(R.string.label_signs);
         }
 
+        holder.signImageBitmap.setImageBitmap(BitmapSerializer.loadImageFromStorage(MainAdapter.context, "image_"+position+".jpg"));
+
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(),"Click on item: " + mListData.getTitle(), Toast.LENGTH_LONG).show();
 
                 Context c = view.getContext();
                 c.startActivity(new Intent(c.getApplicationContext(), DetailActivity.class).putExtra("id", mListData.getId()));

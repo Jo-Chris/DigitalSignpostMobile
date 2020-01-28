@@ -85,7 +85,6 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.MainViewHo
         holder.removeRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(),"Click on item: ", Toast.LENGTH_LONG).show();
                 dataset.remove(sign);
 
                 // remove, bad smell
